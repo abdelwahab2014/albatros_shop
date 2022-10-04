@@ -1,8 +1,6 @@
-# flutterapp
+# Albatros Shopping App
 
-A new Flutter project.
-
-## Getting Started
+## By Abdelwahab Adam
 
 This project is a starting point for a Flutter application.
 
