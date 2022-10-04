@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './home_page.dart';
-import './search_page.dart';
+import 'favorites_page.dart';
 import './message_page.dart';
 import './profile_page.dart';
 
@@ -31,26 +31,34 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentIndex = 0;
+   
   List<Widget> pages = const [
     HomePage(),
-    Search(),
+    Favorites(),
     Message(),
     Profile(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search),
+          ),
+        ],
         title: const Text("ALBATROS"),
         centerTitle: true,
       ),
       body: pages[currentIndex],
       bottomNavigationBar: NavigationBar(
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: "HOME"),
-          NavigationDestination(icon: Icon(Icons.search), label: "Search"),
-          NavigationDestination(icon: Icon(Icons.message), label: "Messages"),
-          NavigationDestination(icon: Icon(Icons.person), label: "PROFILE"),
+          NavigationDestination(icon: Icon(Icons.home), label: "Home"),
+          NavigationDestination(icon: Icon(Icons.favorite), label: "Favorites"),
+          NavigationDestination(icon: Icon(Icons.chat), label: "Chats"),
+          NavigationDestination(icon: Icon(Icons.person), label: "Profile"),
         ],
         onDestinationSelected: (value) {
           setState(
