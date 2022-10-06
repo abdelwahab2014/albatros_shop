@@ -31,7 +31,7 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentIndex = 0;
-   
+
   List<Widget> pages = const [
     HomePage(),
     Favorites(),
@@ -45,12 +45,13 @@ class _RootPageState extends State<RootPage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showSearch(context: context, delegate: SearchBar());
+            },
             icon: const Icon(Icons.search),
           ),
         ],
         title: const Text("ALBATROS"),
-        centerTitle: true,
       ),
       body: pages[currentIndex],
       bottomNavigationBar: NavigationBar(
@@ -69,6 +70,58 @@ class _RootPageState extends State<RootPage> {
         },
         selectedIndex: currentIndex,
       ),
+    );
+  }
+}
+
+// search bar widget
+class SearchBar extends SearchDelegate<String> {
+  final suggestion = ['Lamps', 'Iphone', 'SmartWatch', 'Something'];
+  final recent = ['Product'];
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+          onPressed: () {
+            query = '';
+          },
+          icon: const Icon(Icons.clear))
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+        icon: AnimatedIcon(
+          icon: AnimatedIcons.arrow_menu,
+          progress: transitionAnimation,
+        ),
+        onPressed: () {
+          close(context, null.toString());
+        });
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Text(query);
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final sugg = query.isEmpty
+        ? recent
+        : suggestion.where((element) => element.startsWith(query)).toList();
+
+    return ListView.builder(
+      itemBuilder: ((context, index) => ListTile(
+            onTap: (() {
+              showResults(context);
+            }),
+            leading: const Icon(Icons.abc),
+            title: Text(sugg[index]),
+          )),
+      itemCount: sugg.length,
     );
   }
 }
