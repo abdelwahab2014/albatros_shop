@@ -19,14 +19,14 @@ class _MessageState extends State<Message> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: index == true ? pages[0] : pages[1],
+      body: index == true ? pages[1] : pages[0],
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
             index = !index;
           });
         },
-        child: index == true ? Text(sl[1]) : Text(sl[0]),
+        child: index == true ? Text(sl[0]) : Text(sl[1]),
       ),
     );
   }
