@@ -5,20 +5,18 @@ class ProductsImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return SizedBox(
-      
       height: 100,
       width: 110,
       child: Card(
-        color: const Color.fromARGB(255, 10, 238, 29),
+        color:const Color.fromARGB(255, 93, 95, 93),
         child: Column(
           children: [
             Image.asset(
               'images/501.jpg',
               height: 90,
               width: 150,
-              semanticLabel: "image",
+              fit: BoxFit.fill,
             ),
             const Text("Product")
           ],

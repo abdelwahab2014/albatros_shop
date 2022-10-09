@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import './home_page.dart';
 import 'favorites_page.dart';
 import './message_page.dart';
@@ -14,9 +15,11 @@ class HOME extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+          primarySwatch: currentWidth < 600 ? Colors.blue : Colors.red),
       home: const RootPage(),
     );
   }

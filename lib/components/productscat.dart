@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ProductsCat extends StatelessWidget {
   ProductsCat(this.productsImages, this.productsNames, {super.key});
   String productsImages;
   String productsNames;
   @override
   Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: 120,
-      width: 120,
+      height: screenHeight * 0.2,
+      width: screenWidth * 0.2,
       child: Column(
         children: [
           OutlinedButton(
-            onPressed: (() {
-              debugPrint("Button");
-            }),
+            onPressed: (() {}),
             style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
               padding: const EdgeInsets.all(3),
@@ -26,24 +27,9 @@ class ProductsCat extends StatelessWidget {
             ),
           ),
           Text(productsNames),
+          //Text('$screenWidth'),
         ],
       ),
     );
   }
 }
-
-/*
-Column(
-          children: [
-            
-            Image.asset(
-              'images/500.jpg',
-              height: 80,
-              width: 140,
-              semanticLabel: "image",
-              
-            ),
-            const Text("Product")
-          ],
-        ),
-*/
