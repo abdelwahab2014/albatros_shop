@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import './home_page.dart';
 import 'favorites_page.dart';
 import './message_page.dart';
 import './profile_page.dart';
+import './components/searchbar.dart';
 
-void main() => runApp(const MaterialApp(
+void main() => runApp( MaterialApp(
+       builder: (context, widget) => ResponsiveWrapper.builder(
+        ClampingScrollWrapper.builder(context, widget!),
+        breakpoints: const [
+          ResponsiveBreakpoint.resize(350, name: MOBILE),
+          ResponsiveBreakpoint.autoScale(600, name: TABLET),
+          ResponsiveBreakpoint.resize(800, name: DESKTOP),
+          ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
+        ],
+      ),
       debugShowCheckedModeBanner: false,
-      home: HOME(),
-    ));
-
-class HOME extends StatelessWidget {
-  const HOME({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final currentWidth = MediaQuery.of(context).size.width;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primarySwatch: currentWidth < 600 ? Colors.blue : Colors.red),
       home: const RootPage(),
-    );
-  }
-}
+    ));
 
 class RootPage extends StatefulWidget {
   const RootPage({super.key});
@@ -73,58 +69,6 @@ class _RootPageState extends State<RootPage> {
         },
         selectedIndex: currentIndex,
       ),
-    );
-  }
-}
-
-// search bar widget
-class SearchBar extends SearchDelegate<String> {
-  final suggestion = ['Lamps', 'Iphone', 'SmartWatch', 'Something'];
-  final recent = ['Product'];
-
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-          onPressed: () {
-            query = '';
-          },
-          icon: const Icon(Icons.clear))
-    ];
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-        icon: AnimatedIcon(
-          icon: AnimatedIcons.arrow_menu,
-          progress: transitionAnimation,
-        ),
-        onPressed: () {
-          close(context, null.toString());
-        });
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return Text(query);
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    final sugg = query.isEmpty
-        ? recent
-        : suggestion.where((element) => element.startsWith(query)).toList();
-
-    return ListView.builder(
-      itemBuilder: ((context, index) => ListTile(
-            onTap: (() {
-              showResults(context);
-            }),
-            leading: const Icon(Icons.abc),
-            title: Text(sugg[index]),
-          )),
-      itemCount: sugg.length,
     );
   }
 }

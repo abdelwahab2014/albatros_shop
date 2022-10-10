@@ -23,11 +23,10 @@ class ProductsCat extends StatelessWidget {
             child: CircleAvatar(
               radius: 50, // Image radius
               backgroundImage: AssetImage(productsImages),
-              //child: Text("data"),
+            
             ),
           ),
           Text(productsNames),
-          //Text('$screenWidth'),
         ],
       ),
     );

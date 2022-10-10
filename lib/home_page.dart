@@ -7,17 +7,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth < 100) {
-            return const Desktop();
-          } else {
-            return const Mobile();
-          }
-        }),
-      ),
-    );
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      if (constraints.maxWidth < 100) {
+        return const Desktop();
+      } else {
+        return const Mobile();
+      }
+    });
   }
 }
