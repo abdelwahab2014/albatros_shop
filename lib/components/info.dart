@@ -17,3 +17,5 @@ final List productsNames2 = [
   'Kids Kits',
   'Switch',
 ];
+
+final List cardIcon = ['Icons.phone', 'search'] ;

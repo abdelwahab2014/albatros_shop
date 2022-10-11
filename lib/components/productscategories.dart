@@ -21,9 +21,8 @@ class ProductsCat extends StatelessWidget {
               padding: const EdgeInsets.all(3),
             ),
             child: CircleAvatar(
-              radius: 50, // Image radius
+              radius: 40, // Image radius
               backgroundImage: AssetImage(productsImages),
-            
             ),
           ),
           Text(productsNames),
